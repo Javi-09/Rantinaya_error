@@ -1,0 +1,69 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_productos"
+            android:title="@string/productos"
+            android:icon="@drawable/baseline_shopping_cart_24"
+            app:showAsAction="always">
+            <menu>
+                <item
+                    android:id="@+id/subitem_orellanaP"
+                    android:title="@string/orellana"
+                    android:icon="@drawable/baseline_shopping_cart_24"/>
+                <item
+                    android:id="@+id/subitem_sachaP"
+                    android:title="@string/sacha"
+                    android:icon="@drawable/baseline_shopping_cart_24"/>
+                <item
+                    android:id="@+id/subitem_loretoP"
+                    android:title="@string/loreto"
+                    android:icon="@drawable/baseline_shopping_cart_24"/>
+                <item
+                    android:id="@+id/subitem_aguaricoP"
+                    android:title="@string/aguarico"
+                    android:icon="@drawable/baseline_shopping_cart_24"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/nav_servicios"
+            android:title="@string/servicios"
+            android:icon="@drawable/baseline_shopping_bag_24"
+            app:showAsAction="always">
+            <menu>
+                <item
+                    android:id="@+id/subitem_orellanaS"
+                    android:title="@string/orellana"
+                    android:icon="@drawable/baseline_shopping_bag_24"/>
+                <item
+                    android:id="@+id/subitem_sachaS"
+                    android:title="@string/sacha"
+                    android:icon="@drawable/baseline_shopping_bag_24"/>
+                <item
+                    android:id="@+id/subitem_loretoS"
+                    android:title="@string/loreto"
+                    android:icon="@drawable/baseline_shopping_bag_24"/>
+                <item
+                    android:id="@+id/subitem_aguaricoS"
+                    android:title="@string/aguarico"
+                    android:icon="@drawable/baseline_shopping_bag_24"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/nav_acercaDe"
+            android:title="@string/acerca_de"
+            android:icon="@drawable/baseline_supervised_user_circle_24"
+            app:showAsAction="always" />
+
+        <item
+            android:id="@+id/nav_admin"
+            android:title="@string/admin"
+            android:icon="@drawable/baseline_miscellaneous_services_24"
+            app:showAsAction="always" />
+    </group>
+</menu>

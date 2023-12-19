@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">RANTINAYA</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="productos">PRODUCTOS</string>
+    <string name="servicios">SERVICIOS</string>
+    <string name="acerca_de">ACERCA DE</string>
+    <string name="admin">ADMINISTRADOR</string>
+    <string name="orellana">Francisco de Orellana</string>
+    <string name="sacha">Joya de los Sachas</string>
+    <string name="loreto">Loreto</string>
+    <string name="aguarico">Aguarico</string>
+    <string name="eslogan">E-COMMERCE DE ORELLANA</string>
+    <string name="asociados">Escuela Superior Politécnica de Chimborazo</string>
+    <string name="sitioWeb">SITIO WEB</string>
+    <string name="name_image">IMAGE</string>
+</resources>

@@ -1,0 +1,4 @@
+package Vista
+
+interface ServiceActivity {
+}

@@ -1,0 +1,4 @@
+package Modelo
+
+class Emprendimiento {
+}

@@ -1,0 +1,4 @@
+package Presentador
+
+interface EmprendimientoPresenter {
+}
