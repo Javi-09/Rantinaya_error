@@ -13,6 +13,18 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name="com.example.myapplication.Eliminar"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.eliminar"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.EmpresaLoretoActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.IngresoProducto"
+            android:exported="false" />
+        <activity
             android:name="com.example.myapplication.MainActivity"
             android:exported="true">
             <intent-filter>

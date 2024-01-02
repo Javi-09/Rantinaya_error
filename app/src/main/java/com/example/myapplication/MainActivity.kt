@@ -51,17 +51,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.nav_productos -> {
-                showToast("Accediste a Productos ")
+            R.id.subitem_orellanaP -> {
+                showToast("Accediste a Productos Francisco ")
             }
             R.id.nav_servicios -> {
                 showToast("Accediste a Servicios")
             }
-            R.id.nav_acercaDe -> {
-                showToast("Accediste a Acerca de ")
+            // Redireccionamiento a eliminar Activity
+            R.id.subitem_loretoP -> {
+                startActivity(Intent(this, Eliminar::class.java))
+                return true
             }
+            // Redireccionamiento a IngresoProducto
             R.id.nav_admin -> {
-                showToast("Accediste a Administrador")
+                startActivity(Intent(this, IngresoProducto::class.java))
+                return true
             }
         }
 

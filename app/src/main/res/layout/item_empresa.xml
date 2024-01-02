@@ -1,0 +1,32 @@
+<!-- item_empresa.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Identificador genérico para el nombre de la empresa -->
+    <TextView
+        android:id="@+id/textViewNombreEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Identificador genérico para la dirección -->
+    <TextView
+        android:id="@+id/textViewDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <!-- Identificador genérico para el propietario -->
+    <TextView
+        android:id="@+id/textViewPropietario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <!-- Agrega más TextViews u otros elementos según sea necesario -->
+
+</LinearLayout>
