@@ -57,14 +57,15 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_servicios -> {
                 showToast("Accediste a Servicios")
             }
-            // Redireccionamiento a eliminar Activity
+            // Redireccionamiento a Mostrar Producto Loreto
             R.id.subitem_loretoP -> {
-                startActivity(Intent(this, Eliminar::class.java))
+                showToast("Accediste a Loreto ")
+                startActivity(Intent(this, MostrarEmpresaLoreto::class.java))
                 return true
             }
             // Redireccionamiento a IngresoProducto
             R.id.nav_admin -> {
-                startActivity(Intent(this, IngresoProducto::class.java))
+                startActivity(Intent(this, IngresarEmpresaProducto::class.java))
                 return true
             }
         }

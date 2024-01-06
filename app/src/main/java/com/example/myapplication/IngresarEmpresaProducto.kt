@@ -1,9 +1,7 @@
 package com.example.myapplication
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -12,11 +10,11 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.e_commerce.R
-import com.example.myapplication.database.DatabaseHelperProducto
+import com.example.myapplication.database.DBHelperProducto
 import com.example.myapplication.database.Empresa
 import com.example.myapplication.database.Canton
 
-class IngresoProducto : AppCompatActivity() {
+class IngresarEmpresaProducto : AppCompatActivity() {
 
     private lateinit var editTextNombreEmpresa: EditText
     private lateinit var editTextSlogan: EditText
@@ -24,13 +22,15 @@ class IngresoProducto : AppCompatActivity() {
     private lateinit var editTextFacebook: EditText
     private lateinit var editTextInstagram: EditText
     private lateinit var editTextWhatsapp: EditText
+    private lateinit var editLatitud: EditText
+    private lateinit var editLongitud: EditText
     private lateinit var spinnerCanton: Spinner
     private lateinit var btnGuardarEmpresa: Button
     private lateinit var btnSeleccionarImagen: Button
     private lateinit var btnSeleccionarImagenPropietario: Button
     private lateinit var btnSeleccionarVideo: Button
 
-    private lateinit var databaseHelper: DatabaseHelperProducto
+    private lateinit var databaseHelper: DBHelperProducto
 
     private var imagenSeleccionada: ByteArray? = null
     private var videoSeleccionado: ByteArray? = null
@@ -50,7 +50,7 @@ class IngresoProducto : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ingreso_producto)
+        setContentView(R.layout.activity_ingresar_empresa_producto)
 
         editTextNombreEmpresa = findViewById(R.id.editTextNombreEmpresa)
         spinnerCanton = findViewById(R.id.spinnerCanton)
@@ -59,12 +59,14 @@ class IngresoProducto : AppCompatActivity() {
         editTextFacebook = findViewById(R.id.editTextFacebook)
         editTextInstagram = findViewById(R.id.editTextInstagram)
         editTextWhatsapp = findViewById(R.id.editTextWhatsapp)
+        editLatitud = findViewById(R.id.editLatitud) // Agregado
+        editLongitud = findViewById(R.id.editLongitud) // Agregado
         btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen)
         btnSeleccionarImagenPropietario = findViewById(R.id.btnSeleccionarImagenPropietario)
         btnSeleccionarVideo = findViewById(R.id.btnSeleccionarVideo)
         btnGuardarEmpresa = findViewById(R.id.btnGuardarEmpresa)
 
-        databaseHelper = DatabaseHelperProducto(this)
+        databaseHelper = DBHelperProducto(this)
 
         val cantones = databaseHelper.getAllCantones()
         val cantonAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cantones)
@@ -92,15 +94,17 @@ class IngresoProducto : AppCompatActivity() {
         if (imagenSeleccionada != null && videoSeleccionado != null) {
             val empresa = Empresa(
                 nombre = editTextNombreEmpresa.text.toString(),
-                imagenEmpresa = imagenSeleccionada!!,
                 slogan = editTextSlogan.text.toString(),
-                video = videoSeleccionado!!,
                 nombrePropietario = editTextNombrePropietario.text.toString(),
-                imagenPropietario = imagenSeleccionada!!,
                 facebook = editTextFacebook.text.toString(),
                 instagram = editTextInstagram.text.toString(),
                 whatsapp = editTextWhatsapp.text.toString(),
-                idCanton = (spinnerCanton.selectedItem as Canton).id
+                longitud = editLatitud.text.toString().toDouble(),
+                latitud = editLongitud.text.toString().toDouble(),
+                imagen_empresa = imagenSeleccionada,
+                imagen_propietario = imagenSeleccionada,
+                video_empresa = videoSeleccionado,
+                fkEmpresaCanton = (spinnerCanton.selectedItem as Canton).id
             )
 
             val empresaId = databaseHelper.insertEmpresa(empresa)

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Agrega identificadores según sea necesario -->
-    <item name="textViewNombreEmpresa" type="id" />
-    <item name="textViewDireccion" type="id" />
-    <item name="textViewPropietario" type="id" />
-</resources>

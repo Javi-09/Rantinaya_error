@@ -1,64 +1,48 @@
 package com.example.myapplication
-import com.example.myapplication.R
-import android.content.Context
-import android.graphics.Bitmap
-import android.net.Uri
+
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
-
 import android.widget.TextView
-import android.widget.VideoView
-import com.example.myapplication.database.DatabaseHelperProducto
+import androidx.recyclerview.widget.RecyclerView
+import com.example.e_commerce.R
 import com.example.myapplication.database.Empresa
 
-class EmpresaAdapter(context: Context, empresas: List<Empresa>) :
-    ArrayAdapter<Empresa>(context, 0, empresas) {
+class EmpresaAdapter(private val empresas: List<Empresa>) : RecyclerView.Adapter<EmpresaAdapter.EmpresaViewHolder>() {
 
-    private val dbHelper = DatabaseHelperProducto(context)
+    class EmpresaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val nombreTextView: TextView = itemView.findViewById(R.id.textNombre)
+        val imagenImageView: ImageView = itemView.findViewById(R.id.imageEmpresa)
+        val sloganTextView: TextView = itemView.findViewById(R.id.textSlogan)
+    }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var listItemView = convertView
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(context).inflate(
-                R.layout.list_item_empresa,
-                parent,
-                false
-            )
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresaViewHolder {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_empresa, parent, false)
+        return EmpresaViewHolder(itemView)
+    }
 
-        val currentEmpresa = getItem(position)
+    override fun onBindViewHolder(holder: EmpresaViewHolder, position: Int) {
+        val empresa = empresas[position]
+        holder.nombreTextView.text = empresa.nombre
+        holder.sloganTextView.text = empresa.slogan
 
-        val nombreTextView: TextView = listItemView!!.findViewById(R.id.nombreTextView)
-        nombreTextView.text = currentEmpresa?.nombre
+        // Verificar si el ByteArray de la imagen no está vacío
+        if (empresa.imagen_empresa?.isNotEmpty() == true) {
+            // Convertir ByteArray a Bitmap
+            val bitmap = BitmapFactory.decodeByteArray(empresa.imagen_empresa, 0, empresa.imagen_empresa.size)
 
-        val imagenEmpresaImageView: ImageView =
-            listItemView.findViewById(R.id.imagenEmpresaImageView)
-        val imagenEmpresa = dbHelper.getBitmapFromEmpresa(currentEmpresa?.id ?: -1)
-        if (imagenEmpresa != null) {
-            imagenEmpresaImageView.setImageBitmap(imagenEmpresa)
+            // Cargar Bitmap en ImageView
+            holder.imagenImageView.setImageBitmap(bitmap)
         } else {
-            // Puedes establecer una imagen predeterminada o dejarlo vacío según tus necesidades
-            imagenEmpresaImageView.setImageResource(R.drawable.ic_launcher_foreground)
+            // Si el ByteArray de la imagen está vacío, dejar el ImageView vacío
+            holder.imagenImageView.setImageDrawable(null)
         }
+    }
 
-        val sloganTextView: TextView = listItemView.findViewById(R.id.sloganTextView)
-        sloganTextView.text = currentEmpresa?.slogan
-
-        val videoView: VideoView = listItemView.findViewById(R.id.videoView)
-        // Obtén la miniatura del video como un marcador de posición
-        val videoThumbnail: Bitmap? =
-            dbHelper.getBitmapFromVideo(currentEmpresa?.id ?: -1)
-        if (videoThumbnail != null) {
-            // Configura el bitmap como vista previa del video
-            videoView.setImageBitmap(videoThumbnail)
-        } else {
-            // Puedes establecer una imagen predeterminada o dejarlo vacío según tus necesidades
-            videoView.setImageResource(R.drawable.ic_launcher_foreground)
-        }
-
-        return listItemView
+    override fun getItemCount(): Int {
+        return empresas.size
     }
 }
