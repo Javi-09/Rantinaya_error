@@ -124,11 +124,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/editLatitud"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/btnSeleccionarImagen" />
+                app:layout_constraintBottom_toTopOf="@+id/btnSeleccionarImagenEmpresa" />
 
             <!-- Botones -->
             <Button
-                android:id="@+id/btnSeleccionarImagen"
+                android:id="@+id/btnSeleccionarImagenEmpresa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -147,7 +147,7 @@
                 android:text="Imagen Propietario"
                 android:textColor="#FFFFFF"
                 android:background="#2268E1"
-                app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarImagen"
+                app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarImagenEmpresa"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

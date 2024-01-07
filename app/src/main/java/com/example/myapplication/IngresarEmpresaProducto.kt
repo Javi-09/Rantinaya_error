@@ -26,13 +26,13 @@ class IngresarEmpresaProducto : AppCompatActivity() {
     private lateinit var editLongitud: EditText
     private lateinit var spinnerCanton: Spinner
     private lateinit var btnGuardarEmpresa: Button
-    private lateinit var btnSeleccionarImagen: Button
+    private lateinit var btnSeleccionarImagenEmpresa: Button
     private lateinit var btnSeleccionarImagenPropietario: Button
     private lateinit var btnSeleccionarVideo: Button
 
     private lateinit var databaseHelper: DBHelperProducto
-
-    private var imagenSeleccionada: ByteArray? = null
+    private var imagenSeleccionadaEmpresa: ByteArray? = null
+    private var imagenSeleccionadaPropietario: ByteArray? = null
     private var videoSeleccionado: ByteArray? = null
 
     private val getContent =
@@ -40,7 +40,11 @@ class IngresarEmpresaProducto : AppCompatActivity() {
             if (uri != null) {
                 if (isImage(uri)) {
                     val inputStream = contentResolver.openInputStream(uri)
-                    imagenSeleccionada = inputStream?.readBytes()
+                    if (btnSeleccionarImagenPropietario.isActivated) {
+                        imagenSeleccionadaPropietario = inputStream?.readBytes()
+                    } else {
+                        imagenSeleccionadaEmpresa = inputStream?.readBytes()
+                    }
                 } else if (isVideo(uri)) {
                     val inputStream = contentResolver.openInputStream(uri)
                     videoSeleccionado = inputStream?.readBytes()
@@ -59,9 +63,9 @@ class IngresarEmpresaProducto : AppCompatActivity() {
         editTextFacebook = findViewById(R.id.editTextFacebook)
         editTextInstagram = findViewById(R.id.editTextInstagram)
         editTextWhatsapp = findViewById(R.id.editTextWhatsapp)
-        editLatitud = findViewById(R.id.editLatitud) // Agregado
-        editLongitud = findViewById(R.id.editLongitud) // Agregado
-        btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen)
+        editLatitud = findViewById(R.id.editLatitud)
+        editLongitud = findViewById(R.id.editLongitud)
+        btnSeleccionarImagenEmpresa = findViewById(R.id.btnSeleccionarImagenEmpresa)
         btnSeleccionarImagenPropietario = findViewById(R.id.btnSeleccionarImagenPropietario)
         btnSeleccionarVideo = findViewById(R.id.btnSeleccionarVideo)
         btnGuardarEmpresa = findViewById(R.id.btnGuardarEmpresa)
@@ -73,11 +77,13 @@ class IngresarEmpresaProducto : AppCompatActivity() {
         cantonAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCanton.adapter = cantonAdapter
 
-        btnSeleccionarImagen.setOnClickListener {
+        btnSeleccionarImagenEmpresa.setOnClickListener {
+            btnSeleccionarImagenPropietario.isActivated = false
             getContent.launch("image/*")
         }
 
         btnSeleccionarImagenPropietario.setOnClickListener {
+            btnSeleccionarImagenPropietario.isActivated = true
             getContent.launch("image/*")
         }
 
@@ -91,7 +97,7 @@ class IngresarEmpresaProducto : AppCompatActivity() {
     }
 
     private fun guardarEmpresa() {
-        if (imagenSeleccionada != null && videoSeleccionado != null) {
+        if (videoSeleccionado != null && (imagenSeleccionadaEmpresa != null || imagenSeleccionadaPropietario != null)) {
             val empresa = Empresa(
                 nombre = editTextNombreEmpresa.text.toString(),
                 slogan = editTextSlogan.text.toString(),
@@ -101,8 +107,8 @@ class IngresarEmpresaProducto : AppCompatActivity() {
                 whatsapp = editTextWhatsapp.text.toString(),
                 longitud = editLatitud.text.toString().toDouble(),
                 latitud = editLongitud.text.toString().toDouble(),
-                imagen_empresa = imagenSeleccionada,
-                imagen_propietario = imagenSeleccionada,
+                imagen_empresa = imagenSeleccionadaEmpresa,
+                imagen_propietario = imagenSeleccionadaPropietario,
                 video_empresa = videoSeleccionado,
                 fkEmpresaCanton = (spinnerCanton.selectedItem as Canton).id
             )
@@ -115,7 +121,7 @@ class IngresarEmpresaProducto : AppCompatActivity() {
                 mostrarMensaje("Error al guardar la empresa. Inténtalo de nuevo.")
             }
         } else {
-            mostrarMensaje("Debes seleccionar tanto una imagen como un video para guardar la empresa.")
+            mostrarMensaje("Debes seleccionar un video y al menos una imagen para guardar la empresa.")
         }
     }
 
