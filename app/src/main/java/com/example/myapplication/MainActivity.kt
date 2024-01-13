@@ -85,15 +85,29 @@ class MainActivity : AppCompatActivity() {
 
             //Servicio Francisco de Orellana
             R.id.subitem_orellanaS -> {
-                //showToast("Accediste a Francisco de Orellana")
-                //startActivity(Intent(this, MostrarEmpresaAguaricoProducto::class.java))
-                //return true
+                showToast("Accediste a Francisco de Orellana")
+                startActivity(Intent(this, MostrarEmpresaFranciscoOrellanaServicio::class.java))
+                return true
             }
 
             //Servicio Joya de los Sachas
             R.id.subitem_sachaS -> {
                 showToast("Accediste a Joya de los Sachas")
                 startActivity(Intent(this, MostrarEmpresaSachaServicio::class.java))
+                return true
+            }
+
+            //Servicio Loreto
+            R.id.subitem_loretoS -> {
+                showToast("Accediste a Loreto")
+                startActivity(Intent(this, MostrarEmpresaLoretoServicio::class.java))
+                return true
+            }
+
+            //Servicio Aguarico
+            R.id.subitem_aguaricoS -> {
+                showToast("Accediste a Aguarico")
+                startActivity(Intent(this, MostrarEmpresaAguaricoServicio::class.java))
                 return true
             }
 
