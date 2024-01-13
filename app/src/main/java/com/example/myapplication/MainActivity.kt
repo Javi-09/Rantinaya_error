@@ -116,8 +116,16 @@ class MainActivity : AppCompatActivity() {
                 showToast("Accediste a Servicios")
             }
 
+            //Redireccionamiento ACERCA DE
+            R.id.nav_acercaDe -> {
+                showToast("Accediste a Acerca de")
+                startActivity(Intent(this, AcercaDe::class.java))
+                return true
+            }
+
             // Redireccionamiento ADMINISTRADOR
             R.id.nav_admin -> {
+                showToast("Accediste a Administrador")
                 startActivity(Intent(this, Administrador::class.java))
                 return true
             }
