@@ -7,7 +7,7 @@
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
     android:background="#F0FFF0"
-    tools:context="com.example.myapplication.MostrarEmpresaLoreto">
+    tools:context="com.example.myapplication.MostrarEmpresaFranciscoOrellanaProducto">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="20dp"
-        android:text="EMPRESAS LORETO"
+        android:text="EMPRESAS FRANCISCO DE ORELLANA"
         android:textSize="24sp"
         android:textColor="#FFFFFF"
         android:background="#8BC34A"

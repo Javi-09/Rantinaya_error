@@ -51,18 +51,42 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
+            //Redireccionamiento PRODUCTO
+
+            //Producto Francisco de Orellana
             R.id.subitem_orellanaP -> {
-                showToast("Accediste a Productos Francisco ")
+                showToast("Accediste a Francisco de Orellana")
+                startActivity(Intent(this, MostrarEmpresaFranciscoOrellanaProducto::class.java))
+                return true
             }
+
+            //Producto Joya de los Sachas
+            R.id.subitem_sachaP -> {
+                showToast("Accediste a Joya de los Sachas")
+                startActivity(Intent(this, MostrarEmpresaSachaProducto::class.java))
+                return true
+            }
+
+            //Producto Loreto
+            R.id.subitem_loretoP -> {
+                showToast("Accediste a Loreto")
+                startActivity(Intent(this, MostrarEmpresaLoretoProducto::class.java))
+                return true
+            }
+
+            //Producto Aguarico
+            R.id.subitem_aguaricoP -> {
+                showToast("Accediste a Aguarico")
+                startActivity(Intent(this, MostrarEmpresaAguaricoProducto::class.java))
+                return true
+            }
+
+            //Redireccionamiento SERVICIO
+
             R.id.nav_servicios -> {
                 showToast("Accediste a Servicios")
             }
-            // Redireccionamiento a Mostrar Producto Loreto
-            R.id.subitem_loretoP -> {
-                showToast("Accediste a Loreto ")
-                startActivity(Intent(this, MostrarEmpresaLoreto::class.java))
-                return true
-            }
+
             // Redireccionamiento a IngresoProducto
             R.id.nav_admin -> {
                 startActivity(Intent(this, IngresarEmpresaProducto::class.java))

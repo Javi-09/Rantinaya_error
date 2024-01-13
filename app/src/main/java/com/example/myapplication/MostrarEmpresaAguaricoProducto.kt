@@ -8,7 +8,7 @@ import com.example.e_commerce.R
 import com.example.myapplication.database.DBHelperProducto
 import com.example.myapplication.database.Empresa
 
-class MostrarEmpresaLoreto : AppCompatActivity() {
+class MostrarEmpresaAguaricoProducto : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: EmpresaAdapter
@@ -16,13 +16,13 @@ class MostrarEmpresaLoreto : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mostrar_empresa_loreto)
+        setContentView(R.layout.activity_mostrar_empresa_aguarico_producto)
 
         recyclerView = findViewById(R.id.recyclerViewEmpresas)
         databaseHelper = DBHelperProducto(this)
 
         // Obtener y mostrar las empresas de Loreto
-        val empresasLoreto = databaseHelper.getEmpresasByCantonId(3)  // Cambia 3 por el id_canton deseado
+        val empresasLoreto = databaseHelper.getEmpresasByCantonId(4)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
         adapter = EmpresaAdapter(empresasLoreto)
