@@ -11,7 +11,7 @@ import com.example.myapplication.database.Empresa
 class MostrarEmpresaSachaServicio : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: EmpresaAdapter
+    private lateinit var adapter: EmpresaServicioAdapter
     private lateinit var databaseHelper: DBHelperServicio
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +22,10 @@ class MostrarEmpresaSachaServicio : AppCompatActivity() {
         databaseHelper = DBHelperServicio(this)
 
         // Obtener y mostrar las empresas de Loreto
-        val empresasLoreto = databaseHelper.getEmpresasByCantonId(2)  // Cambia por el id_canton deseado
+        val empresasSachaS = databaseHelper.getEmpresasByCantonId(2)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
-        adapter = EmpresaAdapter(empresasLoreto)
+        adapter = EmpresaServicioAdapter(empresasSachaS)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }

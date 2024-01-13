@@ -22,10 +22,10 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity() {
         databaseHelper = DBHelperProducto(this)
 
         // Obtener y mostrar las empresas de Loreto
-        val empresasLoreto = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
+        val empresasFOP = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
-        adapter = EmpresaAdapter(empresasLoreto)
+        adapter = EmpresaAdapter(empresasFOP)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }

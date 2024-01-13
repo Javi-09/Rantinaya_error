@@ -22,10 +22,10 @@ class MostrarEmpresaLoretoProducto : AppCompatActivity() {
         databaseHelper = DBHelperProducto(this)
 
         // Obtener y mostrar las empresas de Loreto
-        val empresasLoreto = databaseHelper.getEmpresasByCantonId(3)  // Cambia por el id_canton deseado
+        val empresasLoretoP = databaseHelper.getEmpresasByCantonId(3)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
-        adapter = EmpresaAdapter(empresasLoreto)
+        adapter = EmpresaAdapter(empresasLoretoP)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
