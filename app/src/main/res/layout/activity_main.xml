@@ -15,7 +15,7 @@ tools:context="com.example.myapplication.MainActivity">
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/celeste">
 
 
     <com.google.android.material.appbar.AppBarLayout
