@@ -34,5 +34,9 @@
         android:text="Ver Empresa"
         android:background="#689F38"
         android:textColor="#FFFFFF" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#D18C69"/>
 
 </LinearLayout>
