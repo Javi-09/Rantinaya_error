@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#C8E6C9">
+
+    <ImageView
+        android:id="@+id/imageEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/textNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#33691E"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/textSlogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textColor="#33691E"/>
+
+    <Button
+        android:id="@+id/btnRedirect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Empresa"
+        android:background="#689F38"
+        android:textColor="#FFFFFF" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#D18C69"/>
+
+</LinearLayout>

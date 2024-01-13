@@ -83,13 +83,28 @@ class MainActivity : AppCompatActivity() {
 
             //Redireccionamiento SERVICIO
 
+            //Servicio Francisco de Orellana
+            R.id.subitem_orellanaS -> {
+                //showToast("Accediste a Francisco de Orellana")
+                //startActivity(Intent(this, MostrarEmpresaAguaricoProducto::class.java))
+                //return true
+            }
+
+            //Servicio Joya de los Sachas
+            R.id.subitem_sachaS -> {
+                showToast("Accediste a Joya de los Sachas")
+                startActivity(Intent(this, MostrarEmpresaSachaServicio::class.java))
+                return true
+            }
+
+            //ACCESO A SERVICIOS
             R.id.nav_servicios -> {
                 showToast("Accediste a Servicios")
             }
 
-            // Redireccionamiento a IngresoProducto
+            // Redireccionamiento ADMINISTRADOR
             R.id.nav_admin -> {
-                startActivity(Intent(this, IngresarEmpresaProducto::class.java))
+                startActivity(Intent(this, Administrador::class.java))
                 return true
             }
         }
