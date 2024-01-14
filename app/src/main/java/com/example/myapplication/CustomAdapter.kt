@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.R
 
-class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     val names = arrayOf("Fernando Chito",
         "Génesis Ortega",
@@ -28,7 +28,7 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
         "Stakeholder ",
         "Desarrollador ",
         "Analista ")
-    val image = arrayOf(R.drawable.fernando,
+    val image = intArrayOf(R.drawable.fernando,
         R.drawable.g_nesis,
         R.drawable.mishell,
         R.drawable.aracely,
@@ -38,27 +38,27 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
         R.drawable.paul,
         R.drawable.anderson)
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_equipo, viewGroup, false)
+        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_layout, viewGroup, false)
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemImage.setImageResource(image[i])
+
         viewHolder.itemName.text= names[i]
         viewHolder.itemDetail.text= details[i]
+        viewHolder.itemImage.setImageResource(image[i])
     }
 
     override fun getItemCount(): Int {
         return names.size
-
     }
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
         var itemImage:ImageView
         var itemName: TextView
         var itemDetail:TextView
 
         init{
-            itemImage = itemView.findViewById(R.id.item_miembro)
+            itemImage = itemView.findViewById(R.id.item_image)
             itemName = itemView.findViewById(R.id.item_name)
             itemDetail = itemView.findViewById(R.id.item_detail)
 
