@@ -180,6 +180,57 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
     }
 
 
+    //Funcion para obtner datos de una empresa en especifico
+    fun getEmpresaById(empresaId: Long): Empresa? {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Empresa.TABLE_NAME,
+            null,
+            "${Empresa.COLUMN_ID} = ?",
+            arrayOf(empresaId.toString()),
+            null,
+            null,
+            null
+        )
+        return if (cursor.moveToFirst()) {
+            val idIndex = cursor.getColumnIndex(Empresa.COLUMN_ID)
+            val nombreIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE)
+            val sloganIndex = cursor.getColumnIndex(Empresa.COLUMN_SLOGAN)
+            val nombrePropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE_PROPIETARIO)
+            val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
+            val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
+            val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
+            val longitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LONGITUD)
+            val latitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LATITUD)
+            val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
+            val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
+            val videoEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_EMPRESA)
+            val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
+
+            val id = cursor.getLong(idIndex)
+            val nombre = cursor.getString(nombreIndex)
+            val slogan = cursor.getString(sloganIndex)
+            val nombrePropietario = cursor.getString(nombrePropietarioIndex)
+            val facebook = cursor.getString(facebookIndex)
+            val instagram = cursor.getString(instagramIndex)
+            val whatsapp = cursor.getString(whatsappIndex)
+            val longitud = cursor.getDouble(longitudIndex)
+            val latitud = cursor.getDouble(latitudIndex)
+            val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
+            val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
+            val videoEmpresa = cursor.getBlob(videoEmpresaIndex)
+            val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
+
+            Empresa(
+                id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
+                longitud, latitud, imagenEmpresa, imagenPropietario, videoEmpresa, fkEmpresaCanton
+            )
+        } else {
+            null
+        }
+    }
+    ///fin de nueva funcion
+
 
 
     // Funciones para Producto
