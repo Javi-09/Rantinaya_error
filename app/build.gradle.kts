@@ -64,7 +64,6 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.2.0")
 
-
     // Otras dependencias...
 
     // Dependencias de prueba
