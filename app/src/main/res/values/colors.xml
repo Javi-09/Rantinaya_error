@@ -4,5 +4,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#647CFD</color>
     <color name="celeste">#92F4FC</color>
+    <color name="azul">#d8eaf0</color>
+    <color name="azul_other">#BAD8EE</color>
+    <color name="verde">#B4F78B</color>
+
+
+
 
 </resources>

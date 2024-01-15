@@ -15,7 +15,7 @@ tools:context="com.example.myapplication.MainActivity">
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/celeste">
+    android:background="@color/azul">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -52,13 +52,13 @@ tools:context="com.example.myapplication.MainActivity">
             android:layout_height="200dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="315dp"
-            android:src="@drawable/rantinaya_logo"/>
+            android:src="@drawable/logo_rantinaya"/>
         <Button
             android:id="@+id/btnOpenWebsite"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center|top"
-            android:layout_marginTop="540dp"
+            android:layout_marginTop="600dp"
             android:background="@color/white"
             android:text="@string/sitioWeb" />
 
