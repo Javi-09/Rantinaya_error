@@ -26,6 +26,7 @@ tools:context="com.example.myapplication.MainActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
@@ -42,10 +43,10 @@ tools:context="com.example.myapplication.MainActivity">
             android:id="@+id/toolbar_image"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_gravity="end|top"
+            android:layout_gravity="center|top"
             android:layout_marginTop="85dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/logoespoch" />
+            android:src="@drawable/logo_espoch" />
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="200dp"
@@ -59,7 +60,7 @@ tools:context="com.example.myapplication.MainActivity">
             android:layout_height="50dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="600dp"
-            android:background="@color/white"
+            android:background="@color/verde"
             android:text="@string/sitioWeb" />
 
         <TextView

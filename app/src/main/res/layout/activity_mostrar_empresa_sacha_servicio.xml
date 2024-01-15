@@ -18,7 +18,7 @@
         android:text="EMPRESAS JOYA DE LOS SACHAS"
         android:textSize="24sp"
         android:textColor="#FFFFFF"
-        android:background="#8BC34A"
+        android:background="@color/verde"
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"

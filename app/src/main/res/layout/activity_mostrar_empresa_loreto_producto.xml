@@ -18,7 +18,7 @@
         android:text="EMPRESAS LORETO"
         android:textSize="24sp"
         android:textColor="#FFFFFF"
-        android:background="#8BC34A"
+        android:background="@color/azul_other"
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
