@@ -45,7 +45,7 @@ class DetalleEmpresaProducto : AppCompatActivity() {
         imageViewWhatsapp = findViewById(R.id.imageViewWhatsapp)
         videoViewEmpresa = findViewById(R.id.videoViewEmpresa)
 
-        // Inicializar DBHelper
+        // Inicializar DBHelper-
         databaseHelper = DBHelperProducto(this)
 
         // Obtener ID de la empresa desde el Intent (ajusta según cómo pasas los datos)

@@ -21,7 +21,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.execSQL(Empresa.CREATE_TABLE)
         db.execSQL(Servicio.CREATE_TABLE)
 
-        // Insertar cantones iniciales
+        // Insertar cantones iniciales-
         insertInitialCantones(db)
     }
 

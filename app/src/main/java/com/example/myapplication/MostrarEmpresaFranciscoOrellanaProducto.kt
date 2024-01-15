@@ -22,7 +22,7 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
         recyclerView = findViewById(R.id.recyclerViewEmpresas)
         databaseHelper = DBHelperProducto(this)
 
-        // Obtener y mostrar las empresas de Loreto
+        // Obtener y mostrar las empresas de Francisco de Orellana
         val empresasFOP = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
