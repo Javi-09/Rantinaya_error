@@ -84,7 +84,7 @@
             <ImageView
                 android:id="@+id/imageViewFacebook"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:src="@drawable/ic_facebook"
                 android:contentDescription="Facebook Icon"/>
@@ -92,7 +92,7 @@
             <ImageView
                 android:id="@+id/imageViewInstagram"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_instagram"
@@ -101,7 +101,7 @@
             <ImageView
                 android:id="@+id/imageViewWhatsapp"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
