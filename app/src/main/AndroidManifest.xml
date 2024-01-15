@@ -33,6 +33,9 @@
             android:name="com.example.myapplication.Administrador"
             android:exported="false" />
         <activity
+            android:name="com.example.myapplication.AcercaDe"
+            android:exported="false" />
+        <activity
             android:name="com.example.myapplication.IngresarEmpresaServicio"
             android:exported="false" />
         <activity

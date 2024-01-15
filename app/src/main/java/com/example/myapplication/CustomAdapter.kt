@@ -29,7 +29,7 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
         "Desarrollador ",
         "Analista ")
     val image = intArrayOf(R.drawable.fernando,
-        R.drawable.g_nesis,
+        R.drawable.genesis,
         R.drawable.mishell,
         R.drawable.aracely,
         R.drawable.julissa,
