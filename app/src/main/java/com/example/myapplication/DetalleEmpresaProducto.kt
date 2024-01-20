@@ -29,7 +29,6 @@ class DetalleEmpresaProducto : AppCompatActivity() {
     private lateinit var imageViewInstagram: ImageView
     private lateinit var imageViewWhatsapp: ImageView
     private lateinit var videoViewEmpresa: VideoView
-
     private lateinit var databaseHelper: DBHelperProducto
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class DetalleEmpresaProducto : AppCompatActivity() {
         imageViewWhatsapp = findViewById(R.id.imageViewWhatsapp)
         videoViewEmpresa = findViewById(R.id.videoViewEmpresa)
 
-        // Inicializar DBHelper-
+        // Inicializar DBHelper
         databaseHelper = DBHelperProducto(this)
 
         // Obtener ID de la empresa desde el Intent (ajusta según cómo pasas los datos)
@@ -61,128 +60,105 @@ class DetalleEmpresaProducto : AppCompatActivity() {
 
     private fun mostrarDetallesEmpresa(empresa: Empresa?) {
         if (empresa != null) {
-            // Puedes implementar lógica para cargar la imagen, el mapa, etc.
-            // Por ahora, simplemente mostramos algunos detalles
+            // Mostrar algunos detalles básicos
             textViewNombre.text = empresa.nombre
             textViewPropietario.text = empresa.nombrePropietario
 
             // Cargar imagen en ImageView
-            // Cargar imagen del propietario en imageViewPropietario
             if (empresa.imagen_propietario != null && empresa.imagen_propietario.isNotEmpty()) {
-                // Convertir ByteArray a Bitmap
-                val bitmap =
-                    BitmapFactory.decodeByteArray(empresa.imagen_propietario, 0, empresa.imagen_propietario.size)
-
-                // Cargar Bitmap en ImageView
+                val bitmap = BitmapFactory.decodeByteArray(empresa.imagen_propietario, 0, empresa.imagen_propietario.size)
                 imageViewEmpresa.setImageBitmap(bitmap)
             } else {
-                // Si el ByteArray de la imagen está vacío, dejar el ImageView vacío
                 imageViewEmpresa.setImageDrawable(null)
             }
 
-            // Reproducir video en VideoView
-            /*
-            if (empresa.video_empresa != null && empresa.video_empresa.isNotEmpty()) {
-                // Convertir ByteArray a InputStream
-                val videoInputStream = ByteArrayInputStream(empresa.video_empresa)
+            // Configurar VideoView -------------
+            if (!empresa.video_url.isNullOrBlank()) {
+                videoViewEmpresa.visibility = View.VISIBLE
 
-                // Configurar el origen del video en el VideoView desde el InputStream
-                videoViewEmpresa.setVideoURI(Uri.parse(videoInputStream.toString()))
+                // Configurar MediaController para permitir el control del usuario
+                val mediaController = MediaController(this)
+                mediaController.setAnchorView(videoViewEmpresa)
+
+                // Configurar la URL del video en el VideoView
+                val videoUri = Uri.parse(empresa.video_url)
+
+                // Configurar la fuente del video
+                videoViewEmpresa.setVideoURI(videoUri)
+
+                // Añadir estas líneas para configurar el MediaController y el VideoView
+                mediaController.setMediaPlayer(videoViewEmpresa)
+                videoViewEmpresa.setMediaController(mediaController)
 
                 // Iniciar la reproducción del video
-                videoViewEmpresa.setOnPreparedListener { mp ->
-                    mp.isLooping = true // Opcional: Hacer el video en bucle si es necesario
-                }
                 videoViewEmpresa.start()
+
+                // Añadir un listener para manejar la preparación del video
+                videoViewEmpresa.setOnPreparedListener { mediaPlayer ->
+                    // Configurar el loop para reproducción continua (opcional)
+                    mediaPlayer.isLooping = true
+                }
+
+                // Añadir un listener para manejar errores durante la reproducción del video
+                videoViewEmpresa.setOnErrorListener { mediaPlayer, what, extra ->
+                    Log.e("DetalleEmpresaProducto", "Error durante la reproducción del video. Código: $what, Extra: $extra")
+                    false
+                }
             } else {
-                // Si el ByteArray del video está vacío, puedes ocultar o manejar de alguna manera el VideoView
+                // Si la URL del video está vacía o nula, ocultar el VideoView
                 videoViewEmpresa.visibility = View.GONE
-            }*/
+            }
 
-            //-------------------
-
-
-
+            //------------
 
             // Configurar clic del botón "Ver en Mapa"
             btnVerMapa.setOnClickListener {
-                // Lógica para abrir el mapa, puedes usar la latitud y longitud de la empresa
-                // por ejemplo, abrir Google Maps con las coordenadas
+                // Lógica para abrir el mapa, usando la latitud y longitud de la empresa, por ejemplo, abrir Google Maps
             }
 
-            // Puedes configurar clics en los iconos de redes sociales de manera similar
-            // por ejemplo, abrir la aplicación correspondiente al clickear el icono de WhatsApp
-
-            // Asegúrate de implementar lógica para cargar la imagen, el mapa y otros detalles según tus necesidades
-
-            //Redireccionamiento ICONOS
-            //Redireccionamiento Facebook Icono
+            // Redireccionamiento a Facebook
             imageViewFacebook.setOnClickListener {
-                // Aquí obtienes la URL de Facebook de tu objeto Empresa
                 val urlFacebook = empresa?.facebook
-
-                // Verificar si la URL no está vacía
-                if (!urlFacebook.isNullOrBlank()) {
-                    // Crear un Intent para abrir la URL en un navegador
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlFacebook))
-
-                    // Verificar si hay una aplicación que pueda manejar este Intent
-                    if (intent.resolveActivity(packageManager) != null) {
-                        // Abrir la URL en el navegador o la aplicación de Facebook
-                        startActivity(intent)
-                    } else {
-                        // Manejar el caso donde no hay aplicación para manejar la URL
-                        Log.e("DetalleEmpresaProducto", "No se encontró una aplicación para manejar la URL.")
-                    }
-                } else {
-                    // Manejar el caso donde la URL está vacía o nula
-                    Log.e("DetalleEmpresaProducto", "La URL de Facebook está vacía o nula.")
-                }
+                redireccionarUrl(urlFacebook, "Facebook")
             }
-            //-----------------
 
-            //Redireccionamiento Instagram
+            // Redireccionamiento a Instagram
             imageViewInstagram.setOnClickListener {
                 val urlInstagram = empresa?.instagram
-
-                if (!urlInstagram.isNullOrBlank()) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlInstagram))
-
-                    if (intent.resolveActivity(packageManager) != null) {
-                        startActivity(intent)
-                    } else {
-                        Log.e("DetalleEmpresaProducto", "No se encontró una aplicación para manejar la URL de Instagram.")
-                    }
-                } else {
-                    Log.e("DetalleEmpresaProducto", "La URL de Instagram está vacía o nula.")
-                }
+                redireccionarUrl(urlInstagram, "Instagram")
             }
-            //--------------------
 
-            //Redireccionamiento WhatsApp
+            // Redireccionamiento a WhatsApp
             imageViewWhatsapp.setOnClickListener {
                 val phoneNumber = empresa?.whatsapp
-
-                if (!phoneNumber.isNullOrBlank()) {
-                    // Crear un Intent para abrir la aplicación de WhatsApp con el número de teléfono
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber"))
-
-                    if (intent.resolveActivity(packageManager) != null) {
-                        startActivity(intent)
-                    } else {
-                        Log.e("DetalleEmpresaProducto", "No se encontró una aplicación para manejar la URL de WhatsApp.")
-                    }
-                } else {
-                    Log.e("DetalleEmpresaProducto", "El número de teléfono de WhatsApp está vacío o nulo.")
-                }
+                redireccionarWhatsapp(phoneNumber)
             }
+        }
+    }
 
+    private fun redireccionarUrl(url: String?, appName: String) {
+        if (!url.isNullOrBlank()) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            } else {
+                Log.e("DetalleEmpresaProducto", "No se encontró una aplicación para manejar la URL de $appName.")
+            }
+        } else {
+            Log.e("DetalleEmpresaProducto", "La URL de $appName está vacía o nula.")
+        }
+    }
 
-            //--------------------
-
-
-
-
+    private fun redireccionarWhatsapp(phoneNumber: String?) {
+        if (!phoneNumber.isNullOrBlank()) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber"))
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            } else {
+                Log.e("DetalleEmpresaProducto", "No se encontró una aplicación para manejar la URL de WhatsApp.")
+            }
+        } else {
+            Log.e("DetalleEmpresaProducto", "El número de teléfono de WhatsApp está vacío o nulo.")
         }
     }
 

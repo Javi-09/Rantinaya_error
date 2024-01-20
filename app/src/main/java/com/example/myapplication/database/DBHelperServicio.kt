@@ -2,16 +2,10 @@ package com.example.myapplication.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import com.example.myapplication.database.Canton
-import com.example.myapplication.database.Empresa
-import com.example.myapplication.database.Producto
 import java.io.ByteArrayOutputStream
-import java.nio.charset.Charset
 
 class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -21,7 +15,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.execSQL(Empresa.CREATE_TABLE)
         db.execSQL(Servicio.CREATE_TABLE)
 
-        // Insertar cantones iniciales-
+        // Insertar cantones iniciales
         insertInitialCantones(db)
     }
 
@@ -30,7 +24,6 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
     }
 
     // Funciones para Cantón
-    // En el método insertCanton
     fun insertCanton(canton: Canton, db: SQLiteDatabase? = null): Long {
         val writableDb = db ?: this.writableDatabase
         val values = ContentValues()
@@ -73,7 +66,6 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         }
     }
 
-
     fun getAllCantones(): List<Canton> {
         val cantones = mutableListOf<Canton>()
         val db = this.readableDatabase
@@ -114,17 +106,15 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         values.put(Empresa.COLUMN_WHATSAPP, empresa.whatsapp)
         values.put(Empresa.COLUMN_LONGITUD, empresa.longitud)
         values.put(Empresa.COLUMN_LATITUD, empresa.latitud)
-        // Conversión de imagen de ByteArray a Blob
+        // Eliminamos la conversión de imagen de ByteArray a Blob
         values.put(Empresa.COLUMN_IMAGEN_EMPRESA, empresa.imagen_empresa)
         values.put(Empresa.COLUMN_IMAGEN_PROPIETARIO, empresa.imagen_propietario)
-        values.put(Empresa.COLUMN_VIDEO_EMPRESA, empresa.video_empresa)
+        values.put(Empresa.COLUMN_VIDEO_URL, empresa.video_url)
         values.put(Empresa.COLUMN_FK_EMPRESA_CANTON, empresa.fkEmpresaCanton)
 
         return db.insert(Empresa.TABLE_NAME, null, values)
     }
 
-
-    //Obtener Empresa de Acuerdo a un Canton
     fun getEmpresasByCantonId(cantonId: Long): List<Empresa> {
         val empresas = mutableListOf<Empresa>()
         val db = this.readableDatabase
@@ -150,7 +140,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val latitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LATITUD)
             val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
             val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
-            val videoEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_EMPRESA)
+            val videoEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL)
             val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
 
             val id = cursor.getLong(idIndex)
@@ -164,12 +154,12 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val latitud = cursor.getDouble(latitudIndex)
             val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
             val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
-            val videoEmpresa = cursor.getBlob(videoEmpresaIndex)
+            val videoUrl = cursor.getString(videoEmpresaIndex)
             val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
 
             val empresa = Empresa(
                 id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
-                longitud, latitud, imagenEmpresa, imagenPropietario, videoEmpresa, fkEmpresaCanton
+                longitud, latitud, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
             )
 
             empresas.add(empresa)
@@ -179,18 +169,11 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return empresas
     }
 
-
-
-
-    // Funciones para Producto
-    // (Similar a Cantón)
-
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "data_servicio"
     }
 
-    // Función auxiliar para convertir Bitmap a ByteArray
     private fun Bitmap.toByteArray(): ByteArray {
         val stream = ByteArrayOutputStream()
         this.compress(Bitmap.CompressFormat.PNG, 0, stream)

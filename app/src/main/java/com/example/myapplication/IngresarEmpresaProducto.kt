@@ -24,16 +24,15 @@ class IngresarEmpresaProducto : AppCompatActivity() {
     private lateinit var editTextWhatsapp: EditText
     private lateinit var editLatitud: EditText
     private lateinit var editLongitud: EditText
+    private lateinit var editVideoUrl: EditText  // Nuevo campo para la URL del video
     private lateinit var spinnerCanton: Spinner
     private lateinit var btnGuardarEmpresa: Button
     private lateinit var btnSeleccionarImagenEmpresa: Button
     private lateinit var btnSeleccionarImagenPropietario: Button
-    private lateinit var btnSeleccionarVideo: Button
 
     private lateinit var databaseHelper: DBHelperProducto
     private var imagenSeleccionadaEmpresa: ByteArray? = null
     private var imagenSeleccionadaPropietario: ByteArray? = null
-    private var videoSeleccionado: ByteArray? = null
 
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -45,9 +44,6 @@ class IngresarEmpresaProducto : AppCompatActivity() {
                     } else {
                         imagenSeleccionadaEmpresa = inputStream?.readBytes()
                     }
-                } else if (isVideo(uri)) {
-                    val inputStream = contentResolver.openInputStream(uri)
-                    videoSeleccionado = inputStream?.readBytes()
                 }
             }
         }
@@ -65,9 +61,9 @@ class IngresarEmpresaProducto : AppCompatActivity() {
         editTextWhatsapp = findViewById(R.id.editTextWhatsapp)
         editLatitud = findViewById(R.id.editLatitud)
         editLongitud = findViewById(R.id.editLongitud)
+        editVideoUrl = findViewById(R.id.editVideoUrl)  // Referencia al EditText de la URL del video
         btnSeleccionarImagenEmpresa = findViewById(R.id.btnSeleccionarImagenEmpresa)
         btnSeleccionarImagenPropietario = findViewById(R.id.btnSeleccionarImagenPropietario)
-        btnSeleccionarVideo = findViewById(R.id.btnSeleccionarVideo)
         btnGuardarEmpresa = findViewById(R.id.btnGuardarEmpresa)
 
         databaseHelper = DBHelperProducto(this)
@@ -87,41 +83,33 @@ class IngresarEmpresaProducto : AppCompatActivity() {
             getContent.launch("image/*")
         }
 
-        btnSeleccionarVideo.setOnClickListener {
-            getContent.launch("video/*")
-        }
-
         btnGuardarEmpresa.setOnClickListener {
             guardarEmpresa()
         }
     }
 
     private fun guardarEmpresa() {
-        if (videoSeleccionado != null && (imagenSeleccionadaEmpresa != null || imagenSeleccionadaPropietario != null)) {
-            val empresa = Empresa(
-                nombre = editTextNombreEmpresa.text.toString(),
-                slogan = editTextSlogan.text.toString(),
-                nombrePropietario = editTextNombrePropietario.text.toString(),
-                facebook = editTextFacebook.text.toString(),
-                instagram = editTextInstagram.text.toString(),
-                whatsapp = editTextWhatsapp.text.toString(),
-                longitud = editLatitud.text.toString().toDouble(),
-                latitud = editLongitud.text.toString().toDouble(),
-                imagen_empresa = imagenSeleccionadaEmpresa,
-                imagen_propietario = imagenSeleccionadaPropietario,
-                video_empresa = videoSeleccionado,
-                fkEmpresaCanton = (spinnerCanton.selectedItem as Canton).id
-            )
+        val empresa = Empresa(
+            nombre = editTextNombreEmpresa.text.toString(),
+            slogan = editTextSlogan.text.toString(),
+            nombrePropietario = editTextNombrePropietario.text.toString(),
+            facebook = editTextFacebook.text.toString(),
+            instagram = editTextInstagram.text.toString(),
+            whatsapp = editTextWhatsapp.text.toString(),
+            longitud = editLatitud.text.toString().toDouble(),
+            latitud = editLongitud.text.toString().toDouble(),
+            imagen_empresa = imagenSeleccionadaEmpresa,
+            imagen_propietario = imagenSeleccionadaPropietario,
+            video_url = editVideoUrl.text.toString(),  // Nueva propiedad para la URL del video
+            fkEmpresaCanton = (spinnerCanton.selectedItem as Canton).id
+        )
 
-            val empresaId = databaseHelper.insertEmpresa(empresa)
+        val empresaId = databaseHelper.insertEmpresa(empresa)
 
-            if (empresaId != -1L) {
-                mostrarMensaje("Empresa guardada exitosamente")
-            } else {
-                mostrarMensaje("Error al guardar la empresa. Inténtalo de nuevo.")
-            }
+        if (empresaId != -1L) {
+            mostrarMensaje("Empresa guardada exitosamente")
         } else {
-            mostrarMensaje("Debes seleccionar un video y al menos una imagen para guardar la empresa.")
+            mostrarMensaje("Error al guardar la empresa. Inténtalo de nuevo.")
         }
     }
 
@@ -132,10 +120,5 @@ class IngresarEmpresaProducto : AppCompatActivity() {
     private fun isImage(uri: Uri): Boolean {
         val type = contentResolver.getType(uri)
         return type?.startsWith("image/") == true
-    }
-
-    private fun isVideo(uri: Uri): Boolean {
-        val type = contentResolver.getType(uri)
-        return type?.startsWith("video/") == true
     }
 }
