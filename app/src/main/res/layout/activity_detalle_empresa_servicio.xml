@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0FFF0"
+    tools:context="com.example.myapplication.DetalleEmpresaServicio">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <View
+            android:id="@+id/ViewPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/textViewNombreEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#33691E"
+            android:layout_below="@id/ViewPrincipal"
+            android:padding="8dp"/>
+
+        <VideoView
+            android:id="@+id/videoViewEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/textViewNombreEmpresa"
+            />
+
+        <TextView
+            android:id="@+id/textViewNombrePropietario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#33691E"
+            android:layout_below="@id/videoViewEmpresa"
+            android:padding="8dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewPropietario"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
+            android:layout_below="@id/textViewNombrePropietario"
+            android:background="#C8E6C9"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewServicios"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/imageViewPropietario"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btnVerMapa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver en Mapa"
+            android:background="#689F38"
+            android:textColor="#FFFFFF"
+            android:layout_below="@id/recyclerViewServicios"
+            android:layout_marginTop="16dp"/>
+
+
+        <!-- Contenedor horizontal para las imágenes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/btnVerMapa"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/imageViewFacebook"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_facebook"
+                android:contentDescription="Facebook Icon"/>
+
+            <ImageView
+                android:id="@+id/imageViewInstagram"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_instagram"
+                android:contentDescription="Instagram Icon"/>
+
+            <ImageView
+                android:id="@+id/imageViewWhatsapp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_whatsapp"
+                android:contentDescription="WhatsApp Icon"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

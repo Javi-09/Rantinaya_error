@@ -24,6 +24,9 @@
             android:name="com.example.myapplication.DetalleEmpresaProducto"
             android:exported="false" />
         <activity
+            android:name="com.example.myapplication.DetalleEmpresaServicio"
+            android:exported="false" />
+        <activity
             android:name="com.example.myapplication.MostrarEmpresaAguaricoServicio"
             android:exported="false" />
         <activity

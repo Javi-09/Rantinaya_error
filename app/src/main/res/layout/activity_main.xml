@@ -60,7 +60,7 @@ tools:context="com.example.myapplication.MainActivity">
             android:layout_height="50dp"
             android:layout_gravity="center|top"
             android:layout_marginTop="600dp"
-            android:background="#B4F78B"
+            android:background="@color/celeste"
             android:text="@string/sitioWeb" />
 
         <TextView

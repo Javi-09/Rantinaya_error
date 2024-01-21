@@ -9,7 +9,7 @@
     android:paddingBottom="25dp"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
-    android:background="@color/verde">
+    android:background="@color/verdeAgua">
 
     <ImageView
         android:layout_width="131dp"

@@ -5,23 +5,16 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.example.myapplication.Administrador">
 
-<Button
-    android:id="@+id/btnBack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Volver"
-    android:layout_margin="16dp"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"/>
 
 <TextView
     android:id="@+id/tvTitle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Ingreso Empresa"
+    android:text="INGRESAR EMPRESAS"
+    android:textStyle="bold"
     android:textSize="24sp"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="24dp"/>
+    android:layout_marginTop="30dp"/>
 
 <Button
     android:id="@+id/btnServicio"

@@ -3,10 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#647CFD</color>
-    <color name="celeste">#92F4FC</color>
-    <color name="azul">#d8eaf0</color>
-    <color name="azul_other">#BAD8EE</color>
-    <color name="verde">#B4F78B</color>
+    <color name="celeste">#BAD8EE</color>
+    <color name="azul">#0767A8</color>
+    <color name="verde">#61AF1E</color>
+    <color name="verdeAgua">#AAED71</color>
+    <color name="verdeClaro">#C4F699</color>
 
 
 

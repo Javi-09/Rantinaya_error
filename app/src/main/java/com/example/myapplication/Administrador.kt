@@ -12,15 +12,9 @@ class Administrador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador)
 
-        val btnBack: Button = findViewById(R.id.btnBack)
+
         val btnServicio: Button = findViewById(R.id.btnServicio)
         val btnProducto: Button = findViewById(R.id.btnProducto)
-
-        btnBack.setOnClickListener {
-            // Acción al presionar el botón de retorno
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         btnServicio.setOnClickListener {
             // Acción al presionar el botón de Servicio
