@@ -70,13 +70,24 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
+                android:id="@+id/editVideoUrl"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="11dp"
+                android:hint="Url Video"
+                android:background="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNombrePropietario"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <EditText
                 android:id="@+id/editTextFacebook"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="11dp"
                 android:hint="Facebook"
                 android:background="#FFFFFF"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNombrePropietario"
+                app:layout_constraintTop_toBottomOf="@+id/editVideoUrl"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -151,18 +162,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Campo para seleccionar un video -->
-            <Button
-                android:id="@+id/btnSeleccionarVideo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
-                android:text="Empresa Video"
-                android:textColor="#FFFFFF"
-                android:background="#2268E1"
-                app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarImagenPropietario"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Botón para guardar la empresa -->
             <Button
@@ -174,7 +173,7 @@
                 android:text="Guardar Empresa"
                 android:textColor="#FFFFFF"
                 android:background="#e74c3c"
-                app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarVideo"
+                app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarImagenPropietario"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

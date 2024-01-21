@@ -2,16 +2,10 @@ package com.example.myapplication.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import com.example.myapplication.database.Canton
-import com.example.myapplication.database.Empresa
-import com.example.myapplication.database.Producto
 import java.io.ByteArrayOutputStream
-import java.nio.charset.Charset
 
 class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -73,7 +67,6 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         }
     }
 
-
     fun getAllCantones(): List<Canton> {
         val cantones = mutableListOf<Canton>()
         val db = this.readableDatabase
@@ -117,14 +110,13 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         // Conversión de imagen de ByteArray a Blob
         values.put(Empresa.COLUMN_IMAGEN_EMPRESA, empresa.imagen_empresa)
         values.put(Empresa.COLUMN_IMAGEN_PROPIETARIO, empresa.imagen_propietario)
-        values.put(Empresa.COLUMN_VIDEO_EMPRESA, empresa.video_empresa)
+        values.put(Empresa.COLUMN_VIDEO_URL, empresa.video_url) // Nueva columna para la URL del video
         values.put(Empresa.COLUMN_FK_EMPRESA_CANTON, empresa.fkEmpresaCanton)
 
         return db.insert(Empresa.TABLE_NAME, null, values)
     }
 
-
-    //Obtener Empresa de Acuerdo a un Canton
+    // Obtener Empresa de Acuerdo a un Canton
     fun getEmpresasByCantonId(cantonId: Long): List<Empresa> {
         val empresas = mutableListOf<Empresa>()
         val db = this.readableDatabase
@@ -150,7 +142,7 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val latitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LATITUD)
             val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
             val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
-            val videoEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_EMPRESA)
+            val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL) // Nueva columna para la URL del video
             val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
 
             val id = cursor.getLong(idIndex)
@@ -164,12 +156,12 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val latitud = cursor.getDouble(latitudIndex)
             val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
             val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
-            val videoEmpresa = cursor.getBlob(videoEmpresaIndex)
+            val videoUrl = cursor.getString(videoUrlIndex) // Nueva variable para la URL del video
             val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
 
             val empresa = Empresa(
                 id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
-                longitud, latitud, imagenEmpresa, imagenPropietario, videoEmpresa, fkEmpresaCanton
+                longitud, latitud, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton // Actualización del campo de video
             )
 
             empresas.add(empresa)
@@ -179,8 +171,7 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return empresas
     }
 
-
-    //Funcion para obtner datos de una empresa en especifico
+    // Función para obtener datos de una empresa en específico
     fun getEmpresaById(empresaId: Long): Empresa? {
         val db = this.readableDatabase
         val cursor = db.query(
@@ -204,7 +195,7 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val latitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LATITUD)
             val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
             val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
-            val videoEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_EMPRESA)
+            val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL) // Nueva columna para la URL del video
             val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
 
             val id = cursor.getLong(idIndex)
@@ -218,20 +209,19 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val latitud = cursor.getDouble(latitudIndex)
             val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
             val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
-            val videoEmpresa = cursor.getBlob(videoEmpresaIndex)
+            val videoUrl = cursor.getString(videoUrlIndex) // Nueva variable para la URL del video
             val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
 
             Empresa(
                 id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
-                longitud, latitud, imagenEmpresa, imagenPropietario, videoEmpresa, fkEmpresaCanton
+                longitud, latitud, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton // Actualización del campo de video
             )
         } else {
             null
         }
     }
-    ///fin de nueva funcion
 
-
+    // Fin de nueva función
 
     // Funciones para Producto
     // (Similar a Cantón)

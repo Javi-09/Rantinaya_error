@@ -1,7 +1,5 @@
 package com.example.myapplication.database
 
-import android.graphics.Bitmap
-
 data class Empresa(
     val id: Long = -1,
     val nombre: String,
@@ -14,7 +12,7 @@ data class Empresa(
     val latitud: Double,
     val imagen_empresa: ByteArray?,
     val imagen_propietario: ByteArray?,
-    val video_empresa: ByteArray?,
+    val video_url: String, // Nuevo campo para la URL del video
     val fkEmpresaCanton: Long
 ) {
     companion object {
@@ -30,7 +28,7 @@ data class Empresa(
         const val COLUMN_LATITUD = "latitud"
         const val COLUMN_IMAGEN_EMPRESA = "imagen_empresa"
         const val COLUMN_IMAGEN_PROPIETARIO = "imagen_propietario"
-        const val COLUMN_VIDEO_EMPRESA = "video_empresa"
+        const val COLUMN_VIDEO_URL = "video_url" // Nuevo campo para la URL del video
         const val COLUMN_FK_EMPRESA_CANTON = "fk_empresa_canton"
 
         const val CREATE_TABLE = "CREATE TABLE $TABLE_NAME " +
@@ -45,7 +43,7 @@ data class Empresa(
                 "$COLUMN_LATITUD REAL, " +
                 "$COLUMN_IMAGEN_EMPRESA BLOB, " +
                 "$COLUMN_IMAGEN_PROPIETARIO BLOB, " +
-                "$COLUMN_VIDEO_EMPRESA BLOB, " +
+                "$COLUMN_VIDEO_URL TEXT, " + // Nuevo campo para la URL del video
                 "$COLUMN_FK_EMPRESA_CANTON INTEGER, " +
                 "FOREIGN KEY($COLUMN_FK_EMPRESA_CANTON) REFERENCES ${Canton.TABLE_NAME}(${Canton.COLUMN_ID}))"
     }
