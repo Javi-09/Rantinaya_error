@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cantones">
+        <item>Cantón 1</item>
+        <item>Cantón 2</item>
+        <!-- Agrega más cantones según sea necesario -->
+    </string-array>
+</resources>
