@@ -14,6 +14,7 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.e_commerce.R
 import com.example.myapplication.database.DBHelperProducto
+import com.example.myapplication.database.DBHelperServicio
 import com.example.myapplication.database.Empresa
 import java.io.ByteArrayInputStream
 import java.io.InputStream
@@ -29,11 +30,11 @@ class DetalleEmpresaServicio : AppCompatActivity() {
     private lateinit var imageViewInstagram: ImageView
     private lateinit var imageViewWhatsapp: ImageView
     private lateinit var videoViewEmpresa: VideoView
-    private lateinit var databaseHelper: DBHelperProducto
+    private lateinit var databaseHelper: DBHelperServicio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detalle_empresa_producto)
+        setContentView(R.layout.activity_detalle_empresa_servicio)
 
         // Inicializar vistas
         imageViewEmpresa = findViewById(R.id.imageViewPropietario)
@@ -46,7 +47,7 @@ class DetalleEmpresaServicio : AppCompatActivity() {
         videoViewEmpresa = findViewById(R.id.videoViewEmpresa)
 
         // Inicializar DBHelper
-        databaseHelper = DBHelperProducto(this)
+        databaseHelper = DBHelperServicio(this)
 
         // Obtener ID de la empresa desde el Intent (ajusta según cómo pasas los datos)
         val empresaId = intent.getLongExtra("empresa_id", -1)

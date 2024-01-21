@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#C8E6C9">
+    android:background="#ECF0E9">
 
     <ImageView
         android:id="@+id/imageEmpresa"
@@ -17,15 +17,13 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/azul"
         android:padding="8dp" />
 
     <TextView
         android:id="@+id/textSlogan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textColor="@color/azul"/>
+        android:padding="8dp" />
 
     <Button
         android:id="@+id/btnRedirect"
@@ -37,6 +35,6 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="#D18C69"/>
+        android:background="@color/white"/>
 
 </LinearLayout>

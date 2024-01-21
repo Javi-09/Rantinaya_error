@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/verdeClaro"
+    android:background="@color/white"
     tools:context="com.example.myapplication.IngresarEmpresaServicio">
 
     <!-- Agregamos un ScrollView para el contenido si es necesario -->
